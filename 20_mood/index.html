@@ -2,8 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Настроение</title>
+  <title>Настроение</title>  
   <link rel="stylesheet" href="css/mood.css"/>
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
   <script id="quotes_json" type="application/json">
     [
       {
@@ -18,28 +19,65 @@
       },
       {
         "phrase": "Программист - это не человек, это просто новая форма жизни",
-        "signature": "©Неизвестный автор"
+        "signature": "http://aphorismos.ru"
       },
       {
       	"phrase": "Программист - это человек, который решает совершенно непонятным вам способом проблемы, о существовании которых вы даже не подозревали"
       },
       {
       	"phrase": "Такая хорошая погода, надо подвинуть компьютер ближе к окну"
+      },
+      {
+      	"phrase": "Научиться программировать за 21 день очень просто. Это как перевести стрелки часов. Солнечных. Через дорогу. На португальский.",
+      	"signature": "http://miranekdotov.com"
+      },
+      {
+      	"phrase": "Народная примета: если программист в рабочее время играет, значит - либо у него мало работы и большая зарплата, либо у него много работы и маленькая зарплата",
+      	"signature": "http://miranekdotov.com"
+      },
+      {
+      	"phrase": "Крупной фирме требуется программист. Знание компьютера приветствуется.",
+      	"signature": "http://miranekdotov.com"
+      },
+      {
+      	"phrase": "Трудное детство... килобайтные игрушки...",
+      	"signature": "http://miranekdotov.com"
+      },
+      {
+      	"phrase": "Казахские программисты адаптировали DOOM: теперь вместо подземных лабиринтов вы бегаете по степи, а в арсенал оружия добавлена камча",
+      	"signature": "http://miranekdotov.com"
+      },
+      {
+      	"phrase": "Людям физического труда для восстановления своих сил нужен 7-8 часовой ночной сон. Людям умственного труда нужно спать часов 9-10. Ну а программистов будить нельзя вообще.",
+      	"signature": "http://miranekdotov.com"
       }
     ]
   </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-</head>
-<body>
   <script type="application/javascript">
+  	function generate_phrase() {
 		var json_content = $.parseJSON($("#quotes_json").text());
 		var phrases_count = json_content.length;	
 		var random_index =  Math.floor(Math.random() * phrases_count);
 		var signature = json_content[random_index].signature;
-		$("body").wrapInner("<div class=mood-block/>");
-		$("div.mood-block").append('<div class="phrase"><p>' + json_content[random_index].phrase + '</p></div>');
+
+		$("div.phrase").children().remove();
+		$("div.signature").children().remove();
+
+		$("div.phrase").wrapInner('<p>' + json_content[random_index].phrase + '</p>');
 		if (signature)
-			$("div.mood-block").append('<div class="signature"><p>' + signature + '</p></div>');
+			$("div.signature").wrapInner('<p>' + signature + '</p>');
+	}
   </script>
+</head>
+<body>  
+  <div class=mood-block>  	
+ 	<div class="phrase">  			
+ 	</div>
+ 	<div class="signature">  			
+ 	</div>
+ 	<button type="button" class="btn btn-primary btn-lg" onclick="generate_phrase()">Еще...</button>
+  	<script>generate_phrase()</script>
+  </div>
 </body>
 </html>
