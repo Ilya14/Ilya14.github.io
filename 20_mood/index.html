@@ -61,16 +61,16 @@
 		var random_index =  Math.floor(Math.random() * phrases_count);
 		var signature = json_content[random_index].signature;
 
-		$("div.phrase").children().remove();
-		$("div.signature").children().remove();
+		$(".phrase").children().remove();
+		$(".signature").children().remove();
 
-		$("div.phrase").wrapInner('<p>' + json_content[random_index].phrase + '</p>');
+		$(".phrase").text(json_content[random_index].phrase).wrapInner("<p/>");
 		if (signature)
-			$("div.signature").wrapInner('<p>' + signature + '</p>');
+			$(".signature").text(signature).wrapInner("<p/>");
 	}
   </script>
 </head>
-<body>  
+<body class="body-style">
   <div class=mood-block>  	
  	<div class="phrase">  			
  	</div>
