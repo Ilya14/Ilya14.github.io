@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    
+    <title>Поставщики</title>
+
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body> 
+    <!-- Modal -->
+    <div id="RegionsModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">Выбор региона</h4>
+          </div>
+
+          <div class="modal-body">
+            <p>
+              <a href="#" onclick="setRegion(this);">Москва и область</a><br>
+              <a href="#" onclick="setRegion(this);">Санкт-Петербург и область</a><br>
+              <a href="#" onclick="setRegion(this);">Новосибирск и область</a><br>
+            </p>
+          </div>
+          <!-- Футер модального окна -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- navbar -->
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="navbar-container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">            
+            <li class="dropdown" data-toggle="popover">
+              <a id="NavbarRegionString" class="dropdown-toggle popover-bottom" data-toggle="dropdown">
+                Регион <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#" onclick="setRegion(this);">Москва и область</a></li>
+                <li><a href="#" onclick="setRegion(this);">Санкт-Петербург и область</a></li>
+                <li><a href="#" onclick="setRegion(this);">Новосибирск и область</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="navbar-link"><a href="pages/account.html">Леонид Федорович</a></li>
+            <li><a href="#">Выход</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    
+    <div class="container">
+      <div class="row" style="text-align:left;">
+        <div class="col-md-4">
+          <p>Участники в Новосибирске:</p>
+        </div>
+        <div class="col-md-4">
+          <p><a href="pages/catalogue.html">105 оптовых компаний</a></p>
+        </div>
+        <div class="col-md-4">
+          <p><a href="pages/catalogue.html">25 производителей</a></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+          <h2>ВАМ ПОЗВОНЯТ ЛУЧШИЕ ПОСТАВЩИКИ НОВОСИБИРСКА</h2>
+        </div>
+      </div>
+
+      <!-- form -->
+      <div class="jumbotron">       
+        <div class="row">
+          <div class="col-md-4">
+            <h4 style="text-align:left;"><b>Я ищу:</b></h4>
+          </div>
+          <div class="col-md-8" style="text-align:left;">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox"> ЖБИ
+                <span class="text-muted"><small>(Фундаментальные блоки ФБС, плиты перекрытий ПК, перемычки)</small></span>
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox"> Кирпич / Газобетон / Брус
+              </label>
+            </div> <!-- checkbox -->
+            <div class="checkbox">
+              <label>
+                <input type="checkbox"> Бетон
+              </label>
+            </div> <!-- checkbox -->
+            <div class="checkbox">
+              <ul class="nav nav-pills">
+                <li class="dropdown">
+                  <a id="InputFormRegionString" class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    в регионе <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Регион</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div> <!-- checkbox -->
+          </div>
+        </div> <!-- row -->
+        <div class="row">
+          <div class="col-md-4" style="text-align:left;">
+            <label for="description">Описание*</label>
+          </div>
+          <div class="col-md-8" style="text-align:left;">
+            <div class="form-group">
+              <input type="text" class="form-control" id="description" placeholder="Введите описание">
+              <span class="text-muted"><small>Пример: нужно фбс 24.4.6 50 шт плиты пк 20 ПК 60-20-12 доставка в Новолуговое</small></span>
+            </div>
+          </div>
+        </div> <!-- row -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-4" style="text-align:left;">
+                <div class="form-group">
+                  <label for="phoneNumber">Телефон*</label>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="phoneNumber" placeholder="Введите телефон">
+                </div>               
+              </div>
+            </div> <!-- row -->
+          </div> <!-- row -->
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-4" style="text-align:left;">
+                <div class="form-group">
+                  <label for="name">Имя</label>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="name" placeholder="Введите имя">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p><a class="btn btn-lg btn-success" href="#" role="button">Опубликовать заявку</a></p>
+      </div>
+
+      <!-- applications -->
+      <div class="row">
+        <div class="col-md-12">
+          <h2 style="text-align:center;">Свежие заявки</h2>
+        </div>
+      </div>
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>
+              <div class="dropdown">
+                раздел: 
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  Все <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">Раздел</a></li>
+                 </ul>
+              </div>
+            </th>
+            <th style="text-align:right;">
+              <div class="dropdown">
+                регион: 
+                <a id="AppsRegionString" class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  Выбрать <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                  <li><a href="#">Регион</a></li>
+                </ul>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td colspan="2">
+              <div class="row">
+                <div class="col-md-6" style="text-align:left;">
+                  <span class="text-muted">вчера, в 21:30</span>
+                </div>
+                <div class="col-md-6" style="text-align:right;">
+                  <a class="text-muted" href="#"><span class="glyphicon glyphicon-star"></span> в закладки</a>
+                </div>
+              </div> <!-- row -->
+              <div class="row">
+                <div class="col-md-12" style="text-align:left;">
+                  <p>60 шт. ПК от 72-15 до ПК 21-15, Криводановка, с доставкой.</p>
+                  <p>Алексей</p>
+                </div>
+              </div> <!-- row -->
+              <div class="row" style="text-align:left;">
+                <div class="col-md-3">
+                  <button type="button" class="btn btn-primary btn-xs">Показать телефон</button>
+                </div>
+                <div class="col-md-3">
+                  <p>12 просмотров</p>
+                </div>
+              </div> <!-- row -->
+            </td>
+          </tr>
+          
+          <tr>
+            <td colspan="2">
+              <div class="row">
+                <div class="col-md-6" style="text-align:left;">
+                  <span class="text-muted">вчера, в 21:30</span>
+                </div>
+                <div class="col-md-6" style="text-align:right;">
+                  <a class="text-muted" href="#"><span class="glyphicon glyphicon-star"></span> в закладки</a>
+                </div>
+              </div> <!-- row -->
+              <div class="row">
+                <div class="col-md-12" style="text-align:left;">
+                  <p>70 шт. ПК от 72-15 до ПК 21-15, Криводановка, с доставкой.</p>
+                  <p>Андрей</p>
+                </div>
+              </div> <!-- row -->
+              <div class="row" style="text-align:left;">
+                <div class="col-md-3">
+                  <button type="button" class="btn btn-primary btn-xs">Показать телефон</button>
+                </div>
+                <div class="col-md-3">
+                  <p>86 просмотров</p>
+                </div>
+              </div> <!-- row -->
+            </td>
+          </tr>
+          
+          <tr>
+            <td colspan="2">
+              <div class="row">
+                <div class="col-md-6" style="text-align:left;">
+                  <span class="text-muted">вчера, в 21:30</span>
+                </div>
+                <div class="col-md-6" style="text-align:right;">
+                  <a class="text-muted" href="#"><span class="glyphicon glyphicon-star"></span> в закладки</a>
+                </div>
+              </div> <!-- row -->
+              <div class="row">
+                <div class="col-md-12" style="text-align:left;">
+                  <p>100 шт. ПК от 72-15 до ПК 21-15, Криводановка, с доставкой.</p>
+                  <p>Артем</p>
+                </div>
+              </div> <!-- row -->
+              <div class="row" style="text-align:left;">
+                <div class="col-md-3">
+                  <button type="button" class="btn btn-primary btn-xs">Показать телефон</button>
+                </div>
+                <div class="col-md-3">
+                  <p>5 просмотров</p>
+                </div>
+              </div> <!-- row -->
+            </td>
+          </tr>
+          
+          <tr>
+            <td colspan="2">
+              <div class="row">
+                <div class="col-md-6" style="text-align:left;">
+                  <span class="text-muted">вчера, в 21:30</span>
+                </div>
+                <div class="col-md-6" style="text-align:right;">
+                  <a class="text-muted" href="#"><span class="glyphicon glyphicon-star"></span> в закладки</a>
+                </div>
+              </div> <!-- row -->
+              <div class="row">
+                <div class="col-md-12" style="text-align:left;">
+                  <p>5 шт. ПК от 72-15 до ПК 21-15, Криводановка, с доставкой.</p>
+                  <p>Николай</p>
+                </div>
+              </div> <!-- row -->
+              <div class="row" style="text-align:left;">
+                <div class="col-md-3">
+                  <button type="button" class="btn btn-primary btn-xs">Показать телефон</button>
+                </div>
+                <div class="col-md-3">
+                  <p>7 просмотров</p>
+                </div>
+              </div> <!-- row -->
+            </td>
+          </tr>
+          
+          <tr>
+            <td colspan="2">
+              <div class="row">
+                <div class="col-md-6" style="text-align:left;">
+                  <span class="text-muted">вчера, в 21:30</span>
+                </div>
+                <div class="col-md-6" style="text-align:right;">
+                  <a class="text-muted" href="#"><span class="glyphicon glyphicon-star"></span> в закладки</a>
+                </div>
+              </div> <!-- row -->
+              <div class="row">
+                <div class="col-md-12" style="text-align:left;">
+                  <p>60 шт. ПК от 72-15 до ПК 21-15, Криводановка, с доставкой.</p>
+                  <p>Дмитрий</p>
+                </div>
+              </div> <!-- row -->
+              <div class="row" style="text-align:left;">
+                <div class="col-md-3">
+                  <button type="button" class="btn btn-primary btn-xs">Показать телефон</button>
+                </div>
+                <div class="col-md-3">
+                  <p>12 просмотров</p>
+                </div>
+              </div> <!-- row -->
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+
+      <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+          <button type="button" class="btn btn-primary" onclick="location.href='pages/applications_p1.html'">Показать все заявки</button>
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+    <div class="carousel-container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+      <div id="carousel-example-generic" class="carousel slide" data-interval="false" data-ride="carousel">
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <div class="item active">
+            <div class="carousel-caption">
+              <div class="panel panel-primary">
+                <div class="panel-heading"><b>Кирилл, 29 лет, г. Барабинск</b></div>
+                <div class="panel-body">
+                  <div class="media">
+                    <a class="pull-left" href="#">
+                      <img class="media-object" src="img/user.png" alt="Изображение" width="64" height="64">
+                    </a>
+                    <div class="media-body">
+                      <p style="text-align:left;">
+                        Цвета - это мощный способ передачи важной информации в веб-дизайне.
+                        Bootstrap имеет несколько вспомогательных классов, которые могут быть
+                        использованы для придания тексту дополнительной информации.
+                        Цвета - это мощный способ передачи важной информации в веб-дизайне.
+                        Bootstrap имеет несколько вспомогательных классов, которые могут быть
+                        использованы для придания тексту дополнительной информации.
+                      </p>            
+                    </div> <!-- media-body -->
+                  </div> <!-- media -->
+                </div> <!-- panel-body -->
+              </div> <!-- panel -->
+            </div> <!-- carousel-caption -->
+          </div> <!-- item -->
+          <div class="item">
+            <div class="carousel-caption">
+              <div class="panel panel-primary">
+                <div class="panel-heading"><b>Артем, 40 лет, г. Москва</b></div>
+                <div class="panel-body">
+                  <div class="media">
+                    <a class="pull-left" href="#">
+                      <img class="media-object" src="img/user.png" alt="Изображение" width="64" height="64">
+                    </a>
+                    <div class="media-body">
+                      <p style="text-align:left;">
+                        Неплохо
+                      </p>            
+                    </div> <!-- media-body -->
+                  </div> <!-- media -->
+                </div> <!-- panel-body -->
+              </div> <!-- panel -->
+            </div> <!-- carousel-caption -->
+          </div> <!-- item -->
+        </div> <!-- carousel-inner -->
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+      </div> <!-- Carousel -->
+        </div> <!-- col-md-6 col-md-offset-3 -->
+        <div class="col-md-3">
+          <button type="button" class="btn btn-primary">Оставить отзыв</button>
+        </div>
+      </div> <!-- row -->
+    </div> <!-- carousel-container -->
+    
+
+    
+    <footer class="footer">
+      <div class="supplier-container">
+        <div class="row">
+          <div class="col-md-12" style="text-align:center;">
+            <h2>Вы поставщик?</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6" style="text-align:left;">
+            <p>
+              Для доступа к телефонам покупателей заполните форму или позвоните нам: <br>
+              +7 999-888-77-66 <br>              
+            </p>
+            <p>
+              Текст с дополнительной информацией по условиям сотрудничества. <br>
+              Возможно стоит вынести его на отдельную страницу. <br>
+              Текст с дополнительной информацией по условиям сотрудничества. <br>
+              Возможно стоит вынести его на отдельную страницу. <br>
+            </p>           
+          </div>
+          <div class="col-md-6" style="text-align:left;">
+            <div class="row">
+              <div class="col-md-4" style="text-align:right;">
+                <div class="form-group">
+                  <label for="OrgName">Организация</label>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="OrgName" placeholder="Введите название Вашей организации">
+                </div>               
+              </div>
+            </div> <!-- row -->
+            <div class="row">
+              <div class="col-md-4" style="text-align:right;">
+                <div class="form-group">
+                  <label for="OrgPhone">Телефон</label>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="OrgPhone" placeholder="Введите номер телефона">
+                </div>               
+              </div>
+            </div> <!-- row -->
+            <div class="row">
+              <div class="col-md-4" style="text-align:right;">
+                <div class="form-group">
+                  <label for="OrgEMail">EMail</label>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="OrgEMail" placeholder="Введите e-mail">
+                </div>               
+              </div>
+            </div> <!-- row -->
+            <div class="row">
+              <div class="col-md-4" style="text-align:right;">
+                <div class="form-group">
+                  <label for="SupplierName">Имя</label>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="SupplierName" placeholder="Введите имя">
+                </div>               
+              </div>
+            </div> <!-- row -->
+            <div class="row col-md-12" style="text-align:center;">
+              <button type="button" class="btn btn-primary">Отправить информацию</button>
+            </div> <!-- row -->
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+    
+  </body>
+</html>
