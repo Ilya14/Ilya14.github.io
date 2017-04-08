@@ -10,14 +10,14 @@
     
     <title>Личный кабинет</title>
 
-    <link rel="shortcut icon" href="../img/favicon.ico">
+    <link rel="shortcut icon" href="img/favicon.ico">
 
     <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../css/jumbotron-narrow.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
@@ -69,21 +69,36 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">            
             <li class="dropdown" data-toggle="popover">
-              <a id="NavbarRegionString" class="dropdown-toggle popover-bottom" data-toggle="dropdown">
+              <a class="dropdown-toggle popover-bottom" data-toggle="dropdown">
                 Регион <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li><a href="#" onclick="setRegion(this);">Москва и область</a></li>
                 <li><a href="#" onclick="setRegion(this);">Санкт-Петербург и область</a></li>
                 <li><a href="#" onclick="setRegion(this);">Новосибирск и область</a></li>
-              </ul>
+              </ul>       
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li class="navbar-link"><a href=account.html>Леонид Федорович</a></li>
+            <li class="navbar-link"><a href="account.html">Леонид Федорович</a></li>
             <li><a href="#">Выход</a></li>
           </ul>
         </div><!--/.nav-collapse -->
+      </div>
+     
+      <!--popover-->
+      <div class="popover fade bottom in" role="tooltip" style="width: 500px;top: 50px; left: 0px; display: block;">
+        <div class="arrow" style="left: 23.7319%;"></div>
+        <h3 class="popover-title" style="text-align:center;">
+          Ваш регион - <b>Новосибирск и область</b>
+        </h3>
+        <div class="popover-content" style="text-align:center;">
+          <p>Угадали?</p>
+          <div class="btn-group" aria-label="..." role="group">
+            <button class="btn btn-default" type="button" onclick="onRegionOk();" style="width: 50px;">Да</button>
+            <button class="btn btn-default" data-target="#RegionsModal" data-toggle="modal" type="button" onclick="onRegionNo();" style="width: 50px;">Нет</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -92,11 +107,11 @@
     <div class="navbar-container">
       <div class="row">
         <div class="col-md-2" style="text-align:center;">
-          <img src="../img/logo.png" class="img-rounded" alt="Логотип" width="64" height="64">
+          <img src="img/logo.png" class="img-rounded" alt="Логотип" width="64" height="64">
         </div>
         <div class="col-md-10" style="text-align:left;">
           <ol class="breadcrumb">
-            <li><a href="../index.html">Главная</a></li>
+            <li><a href="index.html">Главная</a></li>
             <li class="active">Личный кабинет</li>
           </ol>
         </div>
@@ -107,7 +122,7 @@
 
       <div class="page-header">
        <h1 style="text-align:left;">Личный кабинет</h1>
-       <h6 style="text-align:right;"><a href="applications_p1.html">Перейти к заявкам</a></h6>
+       <h6 style="text-align:right;"><a href="applications_page1.html">Перейти к заявкам</a></h6>
       </div>
 
       <div class="tabbable">
@@ -118,13 +133,25 @@
         </ul>
         <div class="tab-content">
           <div class="tab-pane fade in active" id="tab1">
-            <p>Редактирование информации об организации...</p>
+            <div class="panel panel-default">
+              <div class="panel-body" style="overflow-y: auto;">
+                <p>Редактирование информации об организации...</p> 
+              </div>
+            </div>
           </div>
-          <div class="tab-pane fade" id="tab2">
-            <p>Смена пароля...</p>
+          <div class="tab-pane fade" id="tab2">     
+            <div class="panel panel-default">
+              <div class="panel-body" style="overflow-y: auto;">
+                <p>Смена пароля...</p> 
+              </div>
+            </div>
           </div>
           <div class="tab-pane fade" id="tab3">
-            <p>Рассылка...</p>
+            <div class="panel panel-default">
+              <div class="panel-body" style="overflow-y: auto;">
+                <p>Рассылка...</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -138,9 +165,9 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     
-    <script src="../js/jquery-3.1.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/scripts.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
     
   </body>
 </html>

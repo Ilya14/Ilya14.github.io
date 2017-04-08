@@ -69,21 +69,36 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">            
             <li class="dropdown" data-toggle="popover">
-              <a id="NavbarRegionString" class="dropdown-toggle popover-bottom" data-toggle="dropdown">
+              <a class="dropdown-toggle popover-bottom" data-toggle="dropdown">
                 Регион <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li><a href="#" onclick="setRegion(this);">Москва и область</a></li>
                 <li><a href="#" onclick="setRegion(this);">Санкт-Петербург и область</a></li>
                 <li><a href="#" onclick="setRegion(this);">Новосибирск и область</a></li>
-              </ul>
+              </ul>       
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li class="navbar-link"><a href="pages/account.html">Леонид Федорович</a></li>
+            <li class="navbar-link"><a href="account.html">Леонид Федорович</a></li>
             <li><a href="#">Выход</a></li>
           </ul>
         </div><!--/.nav-collapse -->
+      </div>
+     
+      <!--popover-->
+      <div class="popover fade bottom in" role="tooltip" style="width: 500px;top: 50px; left: 0px; display: block;">
+        <div class="arrow" style="left: 23.7319%;"></div>
+        <h3 class="popover-title" style="text-align:center;">
+          Ваш регион - <b>Новосибирск и область</b>
+        </h3>
+        <div class="popover-content" style="text-align:center;">
+          <p>Угадали?</p>
+          <div class="btn-group" aria-label="..." role="group">
+            <button class="btn btn-default" type="button" onclick="onRegionOk();" style="width: 50px;">Да</button>
+            <button class="btn btn-default" data-target="#RegionsModal" data-toggle="modal" type="button" onclick="onRegionNo();" style="width: 50px;">Нет</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -94,10 +109,10 @@
           <p>Участники в Новосибирске:</p>
         </div>
         <div class="col-md-4">
-          <p><a href="pages/catalogue.html">105 оптовых компаний</a></p>
+          <p><a href="catalogue.html">105 оптовых компаний</a></p>
         </div>
         <div class="col-md-4">
-          <p><a href="pages/catalogue.html">25 производителей</a></p>
+          <p><a href="catalogue.html">25 производителей</a></p>
         </div>
       </div>
 
@@ -108,84 +123,68 @@
       </div>
 
       <!-- form -->
-      <div class="jumbotron">       
-        <div class="row">
-          <div class="col-md-4">
-            <h4 style="text-align:left;"><b>Я ищу:</b></h4>
-          </div>
-          <div class="col-md-8" style="text-align:left;">
-            <div class="checkbox">
-              <label>
-                <input type="checkbox"> ЖБИ
-                <span class="text-muted"><small>(Фундаментальные блоки ФБС, плиты перекрытий ПК, перемычки)</small></span>
-              </label>
+      <div class="jumbotron" style="text-align:left;">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <div class="col-sm-2">
+              <h3>Я ищу</h3>
             </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox"> Кирпич / Газобетон / Брус
-              </label>
-            </div> <!-- checkbox -->
-            <div class="checkbox">
-              <label>
-                <input type="checkbox"> Бетон
-              </label>
-            </div> <!-- checkbox -->
-            <div class="checkbox">
-              <ul class="nav nav-pills">
-                <li class="dropdown">
-                  <a id="InputFormRegionString" class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <div class="col-sm-10">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"> ЖБИ
+                  <span class="text-muted"><small>(Фундаментальные блоки ФБС, плиты перекрытий ПК, перемычки)</small></span>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"> Кирпич / Газобетон / Брус
+                </label>
+              </div> 
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"> Бетон / Раствор
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="nav nav-pills">
+                <div class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     в регионе <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu">
                     <li><a href="#">Регион</a></li>
                   </ul>
-                </li>
-              </ul>
-            </div> <!-- checkbox -->
+                </div>
+              </div>
+            </div>
           </div>
-        </div> <!-- row -->
-        <div class="row">
-          <div class="col-md-4" style="text-align:left;">
-            <label for="description">Описание*</label>
-          </div>
-          <div class="col-md-8" style="text-align:left;">
-            <div class="form-group">
+          <div class="form-group">
+            <label for="description" class="col-sm-2 control-label">Описание*</label>
+            <div class="col-sm-10">
               <input type="text" class="form-control" id="description" placeholder="Введите описание">
-              <span class="text-muted"><small>Пример: нужно фбс 24.4.6 50 шт плиты пк 20 ПК 60-20-12 доставка в Новолуговое</small></span>
+              <span class="help-block">Пример: нужно фбс 24.4.6 50 шт плиты пк 20 ПК 60-20-12 доставка в Новолуговое</span>
+            </div>
+          </div> 
+          <div class="form-group">
+            <label for="phoneNumber" class="col-sm-2 control-label">Телефон*</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="phoneNumber" placeholder="Введите телефон">
+            </div>
+            <label for="name" class="col-sm-2 control-label">Имя</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="name" placeholder="Введите имя">
             </div>
           </div>
-        </div> <!-- row -->
-        <div class="row">
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-md-4" style="text-align:left;">
-                <div class="form-group">
-                  <label for="phoneNumber">Телефон*</label>
-                </div>
-              </div>
-              <div class="col-md-8">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="phoneNumber" placeholder="Введите телефон">
-                </div>               
-              </div>
-            </div> <!-- row -->
-          </div> <!-- row -->
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-md-4" style="text-align:left;">
-                <div class="form-group">
-                  <label for="name">Имя</label>
-                </div>
-              </div>
-              <div class="col-md-8">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="name" placeholder="Введите имя">
-                </div>
-              </div>
+          <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-6" style="text-align:center;">
+              <button type="submit" class="btn btn-lg btn-success">Опубликовать заявку</button>
             </div>
           </div>
-        </div>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">Опубликовать заявку</a></p>
+        </form>
       </div>
 
       <!-- applications -->
@@ -195,6 +194,7 @@
         </div>
       </div>
 
+     <!-- applications -->
       <table class="table table-hover">
         <thead>
           <tr>
@@ -212,7 +212,7 @@
             <th style="text-align:right;">
               <div class="dropdown">
                 регион: 
-                <a id="AppsRegionString" class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                   Выбрать <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -225,15 +225,15 @@
         <tbody>
           
           <tr>
+            <td>
+              <span class="text-muted">вчера, в 21:30</span>
+            </td>
+            <td style="text-align:right;">
+              <a class="text-muted" href="#"><span class="glyphicon glyphicon-star"></span> в закладки</a>
+            </td>
+          </tr>
+          <tr>
             <td colspan="2">
-              <div class="row">
-                <div class="col-md-6" style="text-align:left;">
-                  <span class="text-muted">вчера, в 21:30</span>
-                </div>
-                <div class="col-md-6" style="text-align:right;">
-                  <a class="text-muted" href="#"><span class="glyphicon glyphicon-star"></span> в закладки</a>
-                </div>
-              </div> <!-- row -->
               <div class="row">
                 <div class="col-md-12" style="text-align:left;">
                   <p>60 шт. ПК от 72-15 до ПК 21-15, Криводановка, с доставкой.</p>
@@ -252,15 +252,15 @@
           </tr>
           
           <tr>
+            <td>
+              <span class="text-muted">вчера, в 21:30</span>
+            </td>
+            <td style="text-align:right;">
+              <a class="text-muted" href="#"><span class="glyphicon glyphicon-star"></span> в закладки</a>
+            </td>
+          </tr>
+          <tr>
             <td colspan="2">
-              <div class="row">
-                <div class="col-md-6" style="text-align:left;">
-                  <span class="text-muted">вчера, в 21:30</span>
-                </div>
-                <div class="col-md-6" style="text-align:right;">
-                  <a class="text-muted" href="#"><span class="glyphicon glyphicon-star"></span> в закладки</a>
-                </div>
-              </div> <!-- row -->
               <div class="row">
                 <div class="col-md-12" style="text-align:left;">
                   <p>70 шт. ПК от 72-15 до ПК 21-15, Криводановка, с доставкой.</p>
@@ -279,15 +279,15 @@
           </tr>
           
           <tr>
+            <td>
+              <span class="text-muted">вчера, в 21:30</span>
+            </td>
+            <td style="text-align:right;">
+              <a class="text-muted" href="#"><span class="glyphicon glyphicon-star"></span> в закладки</a>
+            </td>
+          </tr>
+          <tr>
             <td colspan="2">
-              <div class="row">
-                <div class="col-md-6" style="text-align:left;">
-                  <span class="text-muted">вчера, в 21:30</span>
-                </div>
-                <div class="col-md-6" style="text-align:right;">
-                  <a class="text-muted" href="#"><span class="glyphicon glyphicon-star"></span> в закладки</a>
-                </div>
-              </div> <!-- row -->
               <div class="row">
                 <div class="col-md-12" style="text-align:left;">
                   <p>100 шт. ПК от 72-15 до ПК 21-15, Криводановка, с доставкой.</p>
@@ -306,15 +306,15 @@
           </tr>
           
           <tr>
+            <td>
+              <span class="text-muted">вчера, в 21:30</span>
+            </td>
+            <td style="text-align:right;">
+              <a class="text-muted" href="#"><span class="glyphicon glyphicon-star"></span> в закладки</a>
+            </td>
+          </tr>
+          <tr>
             <td colspan="2">
-              <div class="row">
-                <div class="col-md-6" style="text-align:left;">
-                  <span class="text-muted">вчера, в 21:30</span>
-                </div>
-                <div class="col-md-6" style="text-align:right;">
-                  <a class="text-muted" href="#"><span class="glyphicon glyphicon-star"></span> в закладки</a>
-                </div>
-              </div> <!-- row -->
               <div class="row">
                 <div class="col-md-12" style="text-align:left;">
                   <p>5 шт. ПК от 72-15 до ПК 21-15, Криводановка, с доставкой.</p>
@@ -333,15 +333,15 @@
           </tr>
           
           <tr>
+            <td>
+              <span class="text-muted">вчера, в 21:30</span>
+            </td>
+            <td style="text-align:right;">
+              <a class="text-muted" href="#"><span class="glyphicon glyphicon-star"></span> в закладки</a>
+            </td>
+          </tr>
+          <tr>
             <td colspan="2">
-              <div class="row">
-                <div class="col-md-6" style="text-align:left;">
-                  <span class="text-muted">вчера, в 21:30</span>
-                </div>
-                <div class="col-md-6" style="text-align:right;">
-                  <a class="text-muted" href="#"><span class="glyphicon glyphicon-star"></span> в закладки</a>
-                </div>
-              </div> <!-- row -->
               <div class="row">
                 <div class="col-md-12" style="text-align:left;">
                   <p>60 шт. ПК от 72-15 до ПК 21-15, Криводановка, с доставкой.</p>
@@ -364,7 +364,7 @@
 
       <div class="row">
         <div class="col-md-12" style="text-align:center;">
-          <button type="button" class="btn btn-primary" onclick="location.href='pages/applications_p1.html'">Показать все заявки</button>
+          <button type="button" class="btn btn-primary" onclick="location.href='applications_page1.html'" style="margin-top: 5px;margin-bottom: 5px;">Показать все заявки</button>
         </div>
       </div>
 
@@ -373,66 +373,65 @@
     <div class="carousel-container">
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-      <div id="carousel-example-generic" class="carousel slide" data-interval="false" data-ride="carousel">
+          <div id="carousel-example-generic" class="carousel slide" data-interval="false" data-ride="carousel">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <div class="item active">
+                <div class="carousel-caption">
+                  <div class="panel panel-primary">
+                    <div class="panel-heading"><b>Кирилл, 29 лет, г. Барабинск</b></div>
+                    <div class="panel-body">
+                       <div class="media">
+                        <a class="pull-left" href="#">
+                          <img class="media-object" src="img/user.png" alt="Изображение" width="64" height="64">
+                        </a>
+                        <div class="media-body">
+                          <p style="text-align:left;">
+                            Цвета - это мощный способ передачи важной информации в веб-дизайне.
+                            Bootstrap имеет несколько вспомогательных классов, которые могут быть
+                            использованы для придания тексту дополнительной информации.
+                            Цвета - это мощный способ передачи важной информации в веб-дизайне.
+                            Bootstrap имеет несколько вспомогательных классов, которые могут быть
+                            использованы для придания тексту дополнительной информации.
+                          </p>            
+                        </div> <!-- media-body -->
+                      </div> <!-- media -->
+                    </div> <!-- panel-body -->
+                  </div> <!-- panel -->
+                </div> <!-- carousel-caption -->
+              </div> <!-- item -->
+              <div class="item">
+                <div class="carousel-caption">
+                  <div class="panel panel-primary">
+                    <div class="panel-heading"><b>Артем, 40 лет, г. Москва</b></div>
+                    <div class="panel-body">
+                      <div class="media">
+                        <a class="pull-left" href="#">
+                          <img class="media-object" src="img/user.png" alt="Изображение" width="64" height="64">
+                        </a>
+                        <div class="media-body">
+                          <p style="text-align:left;">
+                            Неплохо
+                          </p>            
+                        </div> <!-- media-body -->
+                      </div> <!-- media -->
+                    </div> <!-- panel-body -->
+                  </div> <!-- panel -->
+                </div> <!-- carousel-caption -->
+              </div> <!-- item -->
+            </div> <!-- carousel-inner --> 
 
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-          <div class="item active">
-            <div class="carousel-caption">
-              <div class="panel panel-primary">
-                <div class="panel-heading"><b>Кирилл, 29 лет, г. Барабинск</b></div>
-                <div class="panel-body">
-                  <div class="media">
-                    <a class="pull-left" href="#">
-                      <img class="media-object" src="img/user.png" alt="Изображение" width="64" height="64">
-                    </a>
-                    <div class="media-body">
-                      <p style="text-align:left;">
-                        Цвета - это мощный способ передачи важной информации в веб-дизайне.
-                        Bootstrap имеет несколько вспомогательных классов, которые могут быть
-                        использованы для придания тексту дополнительной информации.
-                        Цвета - это мощный способ передачи важной информации в веб-дизайне.
-                        Bootstrap имеет несколько вспомогательных классов, которые могут быть
-                        использованы для придания тексту дополнительной информации.
-                      </p>            
-                    </div> <!-- media-body -->
-                  </div> <!-- media -->
-                </div> <!-- panel-body -->
-              </div> <!-- panel -->
-            </div> <!-- carousel-caption -->
-          </div> <!-- item -->
-          <div class="item">
-            <div class="carousel-caption">
-              <div class="panel panel-primary">
-                <div class="panel-heading"><b>Артем, 40 лет, г. Москва</b></div>
-                <div class="panel-body">
-                  <div class="media">
-                    <a class="pull-left" href="#">
-                      <img class="media-object" src="img/user.png" alt="Изображение" width="64" height="64">
-                    </a>
-                    <div class="media-body">
-                      <p style="text-align:left;">
-                        Неплохо
-                      </p>            
-                    </div> <!-- media-body -->
-                  </div> <!-- media -->
-                </div> <!-- panel-body -->
-              </div> <!-- panel -->
-            </div> <!-- carousel-caption -->
-          </div> <!-- item -->
-        </div> <!-- carousel-inner -->
-
-        <!-- Controls -->
-        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
-        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
-      </div> <!-- Carousel -->
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+          </div> <!-- Carousel -->
         </div> <!-- col-md-6 col-md-offset-3 -->
-        <div class="col-md-3">
-          <button type="button" class="btn btn-primary">Оставить отзыв</button>
+        <div class="col-md-3" style="text-align:center;">
+          <button type="button" class="btn btn-primary" style="margin-top: 5px;margin-bottom: 5px;">Оставить отзыв</button>
         </div>
       </div> <!-- row -->
     </div> <!-- carousel-container -->
@@ -457,60 +456,40 @@
               Возможно стоит вынести его на отдельную страницу. <br>
               Текст с дополнительной информацией по условиям сотрудничества. <br>
               Возможно стоит вынести его на отдельную страницу. <br>
-            </p>           
+            </p> 
           </div>
-          <div class="col-md-6" style="text-align:left;">
-            <div class="row">
-              <div class="col-md-4" style="text-align:right;">
-                <div class="form-group">
-                  <label for="OrgName">Организация</label>
-                </div>
-              </div>
-              <div class="col-md-8">
-                <div class="form-group">
+          <div class="col-md-6">
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label for="OrgName" class="col-sm-3 control-label">Организация</label>
+                <div class="col-sm-9">
                   <input type="text" class="form-control" id="OrgName" placeholder="Введите название Вашей организации">
-                </div>               
+                </div>              
               </div>
-            </div> <!-- row -->
-            <div class="row">
-              <div class="col-md-4" style="text-align:right;">
-                <div class="form-group">
-                  <label for="OrgPhone">Телефон</label>
-                </div>
-              </div>
-              <div class="col-md-8">
-                <div class="form-group">
+              <div class="form-group">
+                <label for="OrgPhone" class="col-sm-3 control-label">Телефон</label>
+                <div class="col-sm-9">
                   <input type="text" class="form-control" id="OrgPhone" placeholder="Введите номер телефона">
-                </div>               
+                </div>              
               </div>
-            </div> <!-- row -->
-            <div class="row">
-              <div class="col-md-4" style="text-align:right;">
-                <div class="form-group">
-                  <label for="OrgEMail">EMail</label>
-                </div>
-              </div>
-              <div class="col-md-8">
-                <div class="form-group">
+              <div class="form-group">
+                <label for="OrgEMail" class="col-sm-3 control-label">Email</label>
+                <div class="col-sm-9">
                   <input type="text" class="form-control" id="OrgEMail" placeholder="Введите e-mail">
-                </div>               
+                </div>              
               </div>
-            </div> <!-- row -->
-            <div class="row">
-              <div class="col-md-4" style="text-align:right;">
-                <div class="form-group">
-                  <label for="SupplierName">Имя</label>
+              <div class="form-group">
+                <label for="SupplierName" class="col-sm-3 control-label">Имя</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="SupplierName" placeholder="Введите имя">
+                </div>              
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9" style="text-align:center;">
+                  <button type="submit" class="btn btn-primary">Отправить информацию</button>
                 </div>
               </div>
-              <div class="col-md-8">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="SupplierName" placeholder="Введите имя">
-                </div>               
-              </div>
-            </div> <!-- row -->
-            <div class="row col-md-12" style="text-align:center;">
-              <button type="button" class="btn btn-primary">Отправить информацию</button>
-            </div> <!-- row -->
+            </form>
           </div>
         </div>
       </div>
